@@ -1,5 +1,5 @@
 {
-  "name": "html-checker",
+  "name": "fast-html-checker",
   "version": "1.0.0",
   "main": "dist/index.js",
   "typings": "types/index.d.ts",
@@ -12,9 +12,9 @@
   "files": ["dist", "types"],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/EmptyDreams/html-checker.git"
+    "url": "git+ssh://git@github.com/EmptyDreams/fast-html-checker.git"
   },
-  "homepage": "https://github.com/EmptyDreams/html-checker",
+  "homepage": "https://github.com/EmptyDreams/fast-html-checker",
   "keywords": ["html", "xss", "security", "validator", "checker", "whiteList"],
   "devDependencies": {
     "@types/node": "^20.5.3",
