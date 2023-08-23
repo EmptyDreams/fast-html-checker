@@ -1,5 +1,7 @@
 .idea/
 node_modules/
+dist/
+types/
 
 html-checker.iml
 pnpm-lock.yaml
