@@ -1,0 +1,5 @@
+.idea/
+node_modules/
+
+html-checker.iml
+pnpm-lock.yaml
