@@ -35,7 +35,7 @@ export function check(content: string, optional: CheckerOptional): CheckResult {
         for (let item of list) {
             const headCheckResult = checkElementHead(item)
             if (headCheckResult) return headCheckResult
-            const contentChecker = optional.checkers[item.tagName]
+            const contentChecker = optional.checkers?.[item.tagName]
             if (contentChecker) {
                 const result = contentChecker(item)
                 if (result) return result
@@ -57,7 +57,7 @@ export interface CheckerOptional {
     /** 允许的标签列表 */
     allowTags: (TagItemInfo | string)[],
     /** 元素内容检查器 */
-    checkers: {[propName: string]: ElementChecker}
+    checkers?: {[propName: string]: ElementChecker}
 
 }
 
