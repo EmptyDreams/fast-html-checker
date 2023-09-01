@@ -37,7 +37,7 @@ export interface TagItemInfo {
     /** 允许的 attr */
     allowAttrs: {
         [key: string]: ((content: string) => CheckResult) | undefined | null
-    }
+    } | string[]
 
 }
 ```

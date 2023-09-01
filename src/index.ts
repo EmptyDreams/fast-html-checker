@@ -3,6 +3,7 @@ import * as HTMLParser from 'fast-html-parser'
 
 export type CheckResult = string | undefined
 
+// noinspection JSUnusedGlobalSymbols
 /** 检查指定 HTML 内容 */
 export function check(content: string, optional: CheckerOptional): CheckResult {
     let html: HTMLElement
@@ -21,10 +22,15 @@ export function check(content: string, optional: CheckerOptional): CheckResult {
                 if (element.tagName === item) return undefined
             } else if (element.tagName === item.name) {
                 for (let attrName in element.attributes) {
-                    if (!(attrName in item.allowAttrs)) return `${element.tagName} 的 ${attrName} 属性不在白名单中`
-                    const attrChecker = item.allowAttrs[attrName] ?? defaultAttrChecker
-                    const result = attrChecker(element.attributes[attrName])
-                    if (result) return result
+                    if (Array.isArray(item.allowAttrs)) {
+                        if (!item.allowAttrs.includes(attrName))
+                            return `${element.tagName} 的 ${attrName} 属性不在白名单中`
+                    } else {
+                        if (!(attrName in item.allowAttrs)) return `${element.tagName} 的 ${attrName} 属性不在白名单中`
+                        const attrChecker = item.allowAttrs[attrName] ?? defaultAttrChecker
+                        const result = attrChecker(element.attributes[attrName])
+                        if (result) return result
+                    }
                 }
                 return undefined
             }
@@ -68,6 +74,6 @@ export interface TagItemInfo {
     /** 允许的 attr */
     allowAttrs: {
         [key: string]: ((content: string) => CheckResult) | undefined | null
-    }
+    } | string[]
 
 }
